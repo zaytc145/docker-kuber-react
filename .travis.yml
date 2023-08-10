@@ -1,0 +1,8 @@
+language: generic
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t zaytc145/docker-kuber-react -f Dockerfile.dev .
+script:
+  - docker run -e CI=true zaytc145/docker-kuber-react npm run test
