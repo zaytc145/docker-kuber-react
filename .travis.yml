@@ -6,3 +6,14 @@ before_install:
   - docker build -t zaytc145/docker-kuber-react -f Dockerfile.dev .
 script:
   - docker run -e CI=true zaytc145/docker-kuber-react npm run test
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker_kuber_frontend"
+  env: "Dockerkuberfrontend-env-2"
+  bucket_name: "elasticbeanstalk-us-east-1-617718884058"
+  bucket_path: "docker_kuber_frontend"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  on:
+    branch: master
